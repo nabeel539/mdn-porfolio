@@ -4,12 +4,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porfolio - MDN</title>
+    <title>Porfolio - mdn.dev</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="tailwind.config.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ovo&display=swap');
+
+
+        .hand-wave {
+            display: inline-block;
+            transform-origin: 70% 70%;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            position: relative;
+        }
+
+        .hand-wave:hover {
+            animation: enhanced-wave 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) normal forwards;
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.3)) drop-shadow(0 0 15px rgba(255, 193, 7, 0.2));
+        }
+
+        @keyframes enhanced-wave {
+            0% {
+                transform: scale(1.1) rotate(0deg);
+            }
+
+            10% {
+                transform: scale(1.15) rotate(-25deg);
+            }
+
+            20% {
+                transform: scale(1.12) rotate(20deg);
+            }
+
+            30% {
+                transform: scale(1.15) rotate(-20deg);
+            }
+
+            40% {
+                transform: scale(1.12) rotate(15deg);
+            }
+
+            50% {
+                transform: scale(1.15) rotate(-15deg);
+            }
+
+            60% {
+                transform: scale(1.12) rotate(10deg);
+            }
+
+            70% {
+                transform: scale(1.15) rotate(-10deg);
+            }
+
+            80% {
+                transform: scale(1.12) rotate(5deg);
+            }
+
+            90% {
+                transform: scale(1.15) rotate(-5deg);
+            }
+
+            100% {
+                transform: scale(1.1) rotate(0deg);
+            }
+        }
+
+        /* Subtle glow effect for better visibility */
+        .hand-wave::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hand-wave:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes move-left {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .animate-move-left {
+            animation: move-left 30s linear infinite;
+        }
+
+        .tape-container {
+            padding: 4rem 0;
+            overflow-x: clip;
+        }
+
+        @media (min-width: 1024px) {
+            .tape-container {
+                padding: 6rem 0;
+            }
+        }
+
+        .tape-gradient {
+            background: linear-gradient(to right, #6ee7b7, #38bdf8);
+            transform: rotate(-3deg);
+            margin-left: -0.25rem;
+            margin-right: -0.25rem;
+        }
+
+        .tape-mask {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .tape-content {
+            display: flex;
+            flex: none;
+            gap: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            animation: moveLeft 20s linear infinite;
+        }
+
+        @keyframes moveLeft {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .tape-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            white-space: nowrap;
+        }
+
+        .tape-text {
+            color: #111827;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 0.875rem;
+        }
+
+        .star-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #111827;
+            transform: rotate(-12deg);
+        }
+
+        .bg-gradient-emerald-sky {
+            background: linear-gradient(to right, #6ee7b7, #38bdf8);
+        }
+
+        /* Grain texture overlay */
+        .grain-overlay {
+            background-image: url('./images/grain.jpg');
+            background-size: cover;
+            background-repeat: repeat;
+            opacity: 0.05;
+            border-radius: 16px;
+        }
+
+        /* Arrow icon using CSS */
     </style>
+
+    <link rel="icon" href="images/favicon.ico" type="image/png" />
+
 </head>
 
 <body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
@@ -17,8 +195,9 @@
         <img src="./images/header-bg-color.png" alt="gredient-bg-color" class="w-full dark:hidden">
     </div>
     <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
-        <img src="./images/logo.png" alt="Logo" class="w-28 cursor-pointer mr-14 dark:hidden" />
-        <img src="./images/logo_dark.png" alt="Logo" class="w-28 cursor-pointer mr-14 hidden dark:block" />
+        <img src="./images/logo.jpeg" alt="Logo" class="w-28 cursor-pointer mr-14 dark:hidden rounded-md shadow-md" />
+        <img src="./images/logo-drk.png" alt="Logo"
+            class="w-28 cursor-pointer mr-14 hidden dark:block rounded-md shadow-md" />
         <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 
             dark:border dark:boder-white/50 dark:bg-transparent">
             <li><a href="#top">Home</a></li>
@@ -32,7 +211,7 @@
                 <img src="./images/moon_icon.png" alt="moon" class="w-6 dark:hidden">
                 <img src="./images/sun_icon.png" alt="moon" class="w-6 hidden dark:block">
             </button>
-            <a href="contact"
+            <a href="#contact"
                 class="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50">Contact
                 <img src="./images/arrow-icon.png" class="w-3 dark:hidden">
                 <img src="./images/arrow-icon-dark.png" class="w-3 hidden dark:block">
@@ -59,11 +238,24 @@
     </nav>
     <!-- ----- header ----- -->
     <div class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
-        <img src="./images/profile-img.png" alt="profile" class="rounded-full w-32">
+        <div class="flex items-center flex-col">
+            <img src="images/memoji-computer.png" class="w-32" alt="PHOTO" />
+
+            <div
+                class="bg-white border border-gray-800 px-4 py-1.5 inline-flex items-center gap-2 rounded-lg dark:bg-gray-900 dark:border-gray-300">
+                <div class="w-2.5 h-2.5 bg-green-500 rounded-full relative">
+                    <div class="absolute inset-0 bg-green-500 rounded-full animate-ping"></div>
+                </div>
+                <div class="text-sm font-medium text-black dark:text-white">Available for new Project</div>
+            </div>
+        </div>
+
+
         <h3 class="flex items-center gap-2 text-xl md:text-2xl mb-3 font-Ovo">Hi! I'm Md Nabeel Ahemad <img
-                src="./images/hand-icon.png" class="w-6"></h3>
+                src="./images/hand-icon.png" class="w-6 hand-wave"></h3>
         <h1 class="text-3xl sm:text-6xl lg:text-[66px] font-Ovo">frontend web developer based in India.</h1>
-        <p class="max-w-2xl mx-auto font-Ovo">I am a frontend developer from Delhi, INDIA with 5 years of experience.
+        <p class="max-w-2xl mx-auto font-Ovo">I am a frontend developer from Hyderabad, INDIA with 3+ years of
+            experience.
         </p>
 
         <div class="flex gap-4 flex-col md:flex-row">
@@ -75,7 +267,7 @@
             <div
                 class="px-10 py-3 rounded-full border border-gray-500 flex gap-2 dark:bg-white dark:border-transparent">
 
-                <a href="./assets/my resume.pdf" download class="flex items-center gap-2 dark:text-black">my resume</a>
+                <a href="./assets/MDs Resume.pdf" download class="flex items-center gap-2 dark:text-black">my resume</a>
                 <img src="./images/download-icon.png" class="w-4 object-contain ">
             </div>
         </div>
@@ -88,22 +280,22 @@
         <h2 class="text-5xl text-center font-Ovo">About me</h2>
         <div class="flex w-full flex-col lg:flex-row items-center gap-20 my-20">
             <div class="max-w-max mx-auto relative">
-                <img src="./images/user-image.png" alt="" class="w-64 sm:w-80 rounded-3xl max-w-none">
+                <img src="./images/user-image.png" alt="" class="w-64 sm:w-80 rounded-3xl max-w-none dark:hidden">
+                <img src="./images/user-image-drk.png" alt=""
+                    class="w-64 sm:w-80 rounded-3xl max-w-none hidden dark:block">
                 <div
                     class="bg-white w-1/2 aspect-square absolute right-0 bottom-0 rounded-full translate-x-1/4 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center ">
                     <img src="./images/circular-text.png" alt="" class="w-full animate-spin_slow">
-                    <img src="./images/dev-icon.png" alt=""
-                        class="w-1/4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <img src="./images/memoji-computer.png" alt=""
+                        class="w-1/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 </div>
             </div>
             <div class="flex-1">
-                <p class="mb-10 max-w-2xl font-Ovo">A highly motivated and detail-oriented Software Engineer with a
-                    strong
-                    foundation in computer science
-                    and a passion
-                    for problem-solving. Proficient in various programming languages such as Java, HTML, CSS &
-                    JavaScript. Seeking a
-                    challenging opportunity to apply my skills and knowledge to deliver high-quality software solutions.
+                <p class="mb-10 max-w-2xl font-Ovo text-justify">Frontend Engineer with a solid foundation in computer
+                    science and
+                    hands-on experience building responsive, accessible web applications. Skilled in JavaScript, React,
+                    Next.js, and performance optimization. Looking to contribute to product-driven teams by delivering
+                    scalable, user-focused interfaces.
                 </p>
                 <ul class="grid grid-cols-1 sm:grid-cols-auto gap-6 max-w-2xl">
                     <li
@@ -125,7 +317,8 @@
                         <img src="./images/project-icon.png" alt="" class="w-7 mt-3 dark:hidden">
                         <img src="./images/project-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
                         <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Projects</h3>
-                        <p class="text-gray-600 text-sm dark:text-white/80">Built more than 5 projects</p>
+                        <p class="text-gray-600 text-sm dark:text-white/80">Developed 40+ full-stack web projects</p>
+
                     </li>
                 </ul>
                 <h4 class="my-6 text-gray-700 font-Ovo dark:text-white/80">Tools i use</h4>
@@ -214,120 +407,218 @@
 
     <!-- ----- PortFolio ----- -->
     <div id="work" class="w-full px-[12%] py-10 scroll-mt-20">
-        <h4 class="text-center mb-2 text-lg font-Ovo">My Portfolio</h4>
-        <h2 class="text-center text-5xl font-Ovo">My Recent Work</h2>
-        <p class="text-center max-w-2xl mx-auto mt-5 mb-12  font-Ovo">Welcome to my Web development Porfolio! Explore a
-            collection of projects showcasing my expertise in frontend development</p>
-        <div class="grid grid-cols-auto my-10 gap-5">
-            <div
-                class="aspect-square bg-[url('./images/work-1.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
+        <div id="projects" class="w-full px-[12%] py-10 scroll-mt-20">
+            <h4 class="text-center mb-2 text-lg font-Ovo text-gray-700 dark:text-white/80">Real-world Result</h4>
+            <h2 class="text-center text-5xl font-Ovo text-gray-900 dark:text-white">Feature Projects</h2>
+            <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo text-gray-600 dark:text-white/70">
+                See how I transformed concepts into engaging digital experiences.
+            </p>
 
+            <div class="relative h-[250vh]">
+                <!-- Card 1 – Urban Mart -->
                 <div
-                    class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                    <div>
-                        <h2 class="font-semibold dark:text-black">Frontend Project</h2>
-                        <p class="text-sm text-gray-700">Web Design</p>
+                    class="sticky top-[100px] bg-white dark:bg-darkHover p-6 md:p-10 mb-16 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.05)] border border-gray-200 dark:border-white/10">
+                    <div class="lg:flex gap-10">
+                        <div class="absolute inset-0 -z-10 hidden dark:grain-overlay "></div>
+                        <div class="lg:w-1/2">
+                            <div
+                                class="uppercase text-sm font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-500">
+                                E Commerce Marketplace &bull; 2024
+                            </div>
+                            <h3 class="text-3xl font-serif mt-4 text-gray-900 dark:text-white">Urban Mart</h3>
+                            <ul class="mt-4 text-sm text-gray-700 dark:text-white/70 space-y-2">
+                                <li class="flex gap-2 items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+
+                                    Stripe for secure online payments
+                                </li>
+                                <li class="flex gap-2 items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Real-time cart management & price calculations</li>
+                                <li class="flex gap-2 items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Responsive and user-friendly checkout flow</li>
+                            </ul>
+                            <a href="https://urban-mart-frontend.onrender.com" target="_blank">
+                                <button
+                                    class="mt-5 bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white px-6 py-2 rounded-full font-semibold flex items-center gap-2 shadow hover:opacity-90">
+                                    Visit Live Site <img src="./images/arrow-icon.png" class="w-3 dark:hidden">
+                                    <img src="./images/arrow-icon-dark.png" class="w-3 hidden dark:block">
+                                </button>
+                            </a>
+                        </div>
+                        <div class="lg:w-1/2 mt-6 lg:mt-0">
+                            <img src="./images/Project-1.png" alt="Urban Mart Screenshot"
+                                class="rounded-xl w-full shadow-md">
+                        </div>
                     </div>
-                    <div
-                        class="border border-black rounded-full w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                        <img src="./images/send-icon.png" alt="" class="w-5">
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="sticky top-[160px] bg-white dark:bg-darkHover p-6 md:p-10 mb-16 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.05)] border border-gray-200 dark:border-white/10">
+                    <div class="lg:flex gap-10">
+                        <div class="absolute inset-0 -z-10 hidden dark:grain-overlay "></div>
+                        <div class="lg:w-1/2">
+                            <div
+                                class="uppercase text-sm font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-500">
+                                MICRO 75 &bull; 2025
+                            </div>
+                            <h3 class="text-3xl font-serif mt-4 text-gray-900 dark:text-white">
+                                Micro Info Data Soft
+                            </h3>
+                            <ul class="mt-4 text-sm text-gray-700 dark:text-white/70 space-y-2">
+                                <li class="flex gap-2 items-center"> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Multi-role access with admin, franchise, & students</li>
+                                <li class="flex gap-2 items-center"> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Courses selling & students management</li>
+                                <li class="flex gap-2 items-center"> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Verified course certificates after completion</li>
+                            </ul>
+                            <a href="https://micro-frontend-17nl.onrender.com" target="_blank">
+                                <button
+                                    class="mt-5 bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white px-6 py-2 rounded-full font-semibold flex items-center gap-2 shadow hover:opacity-90">
+                                    Visit Live Site <img src="./images/arrow-icon.png" class="w-3 dark:hidden">
+                                    <img src="./images/arrow-icon-dark.png" class="w-3 hidden dark:block">
+                                </button>
+                            </a>
+                        </div>
+                        <div class="lg:w-1/2 mt-6 lg:mt-0">
+                            <img src="./images/Project-2.png" class="rounded-xl w-full shadow-md">
+                        </div>
                     </div>
                 </div>
 
-            </div>
-            <div
-                class="aspect-square bg-[url('./images/work-1.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
-
+                <!-- Card 3 -->
                 <div
-                    class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                    <div>
-                        <h2 class="font-semibold dark:text-black">Frontend Project</h2>
-                        <p class="text-sm text-gray-700">Web Design</p>
-                    </div>
-                    <div
-                        class="border border-black rounded-full w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                        <img src="./images/send-icon.png" alt="" class="w-5">
+                    class="sticky top-[220px]  bg-white dark:bg-darkHover p-6 md:p-10 mb-16 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(255,255,255,0.05)] border border-gray-200 dark:border-white/10">
+                    <div class="lg:flex gap-10">
+                        <div class="absolute inset-0 -z-10 hidden dark:grain-overlay "></div>
+                        <div class="lg:w-1/2">
+                            <div
+                                class="uppercase text-sm font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-500">
+                                Hashtag Agriculture &bull; 2025
+                            </div>
+                            <h3 class="text-3xl font-serif mt-4 text-gray-900 dark:text-white">Exam Prep Platform for
+                                Agri Careers
+                            </h3>
+                            <ul class="mt-4 text-sm text-gray-700 dark:text-white/70 space-y-2">
+                                <li class="flex gap-2 items-center"> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Focused on agri-exams like IBPS, AFO, ICAR etc</li>
+                                <li class="flex gap-2 items-center"> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Includes mock tests, daily quizzes, notes etc.</li>
+                                <li class="flex gap-2 items-center"> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    Mentorship & interview guidance for field officer roles</li>
+                            </ul>
+                            <a href="https://www.hashtagagriculture.com/" target="_blank">
+                                <button
+                                    class="mt-5 bg-gradient-to-r from-emerald-400 to-sky-500 text-white px-6 py-2 rounded-full font-semibold flex items-center gap-2 shadow hover:opacity-90">
+                                    Visit Live Site <img src="./images/arrow-icon.png" class="w-3 dark:hidden">
+                                    <img src="./images/arrow-icon-dark.png" class="w-3 hidden dark:block">
+                                </button>
+                            </a>
+                        </div>
+                        <div class="lg:w-1/2 mt-6 lg:mt-0">
+                            <img src="./images/Project-3.png" class="rounded-xl w-full shadow-md">
+                        </div>
                     </div>
                 </div>
-
-            </div>
-            <div
-                class="aspect-square bg-[url('./images/work-1.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
-
-                <div
-                    class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                    <div>
-                        <h2 class="font-semibold dark:text-black">Frontend Project</h2>
-                        <p class="text-sm text-gray-700">Web Design</p>
-                    </div>
-                    <div
-                        class="border border-black rounded-full w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                        <img src="./images/send-icon.png" alt="" class="w-5">
-                    </div>
-                </div>
-
-            </div>
-            <div
-                class="aspect-square bg-[url('./images/work-1.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
-
-                <div
-                    class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                    <div>
-                        <h2 class="font-semibold dark:text-black">Frontend Project</h2>
-                        <p class="text-sm text-gray-700">Web Design</p>
-                    </div>
-                    <div
-                        class="border border-black rounded-full w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                        <img src="./images/send-icon.png" alt="" class="w-5">
-                    </div>
-                </div>
-
             </div>
         </div>
-        <a href="#" class="w-max flex items-center justify-center gap-2 to-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-lightHover duration-500
-            dark:text-white dark:border-white dark:hover:bg-darkHover">Show
-            more
-            <img src="./images/right-arrow-bold.png" alt="" class="w-4 dark:hidden">
-            <img src="./images/right-arrow-bold-dark.png" alt="" class="w-4 hidden dark:block">
-        </a>
+
     </div>
-    <!-- ----- Contact Me ----- -->
-    <div id="contact"
-        class="w-full px-[12%] py-10 scroll-mt-20 bg-[url('./images/footer-bg-color.png')] dark:bg-none bg-no-repeat bg-[length:90%_auto] bg-center">
-        <h4 class="text-center mb-2 text-lg font-Ovo">Connect with me</h4>
-        <h2 class="text-center text-5xl font-Ovo">Get in touch</h2>
-        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo ">I'd love to hear from you! If you have any
-            questions,
-            comments or feedback, please use the form below. I'll get back to you as soon as possible.</p>
 
-        <form action="https://api.web3forms.com/submit" class="max-w-2xl mx-auto" method="post">
-            <input type="hidden" name="access_key" value="6aebddbe-3be0-42cc-8ea2-05ebd0cefa8a">
-            <div class="grid grid-cols-auto gap-6 mt-10 mb-8">
-                <input type="text" placeholder="Enter your name"
-                    class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90 placeholder-gray-500 dark:placeholder-gray-500"
-                    required name="name" />
-                <input type="email" placeholder="Enter your email"
-                    class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90 placeholder-gray-500 dark:placeholder-gray-500"
-                    required name="email" />
+    <!-- Tape Section -->
+    <div class="tape-container">
+        <div class="tape-gradient">
+            <div class="flex tape-mask">
+                <div class="tape-content" id="tapeContent">
+                    <!-- Content will be generated by JavaScript -->
+                </div>
             </div>
-            <textarea rows="6" placeholder="Enter your message"
-                class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6 dark:bg-darkHover/30 dark:border-white/90 placeholder-gray-500 dark:placeholder-gray-500"
-                required name="message">
-            </textarea>
+        </div>
+    </div>
 
-            <button type="submit"
-                class="py-3 px-8 w-max flex items-center justify-center gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover">
-                Submit now
-                <img src="./images/right-arrow-white.png" alt="" class="w-4">
-            </button>
-        </form>
+    <!-- ----- Contact Me ----- -->
+    <div class="py-16 pt-12 lg:py-24 lg:pt-20" id="contact">
+        <div class="container mx-auto px-4">
+            <div
+                class="bg-gradient-emerald-sky text-gray-900 py-8 px-4 sm:px-8 md:px-10 rounded-3xl text-center md:text-left relative overflow-hidden z-0 max-w-3xl mx-auto">
+                <!-- Grain texture overlay -->
+                <div class="absolute inset-0 -z-10 grain-overlay"></div>
+
+                <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-center md:items-start">
+                    <div class="flex-1">
+                        <h2 class="font-serif text-2xl md:text-3xl font-bold">
+                            Let's create something amazing together
+                        </h2>
+                        <p class="text-sm md:text-base mt-2 opacity-90">
+                            Ready to take your project to the next level? I'm here to help!
+                            Whether you have a question, want to discuss a project, or just
+                            want to say hi, feel free to reach out. I look forward to
+                            hearing from you!
+                        </p>
+                    </div>
+
+                    <div class="w-full md:w-auto flex justify-center md:justify-end">
+                        <!-- <button
+                            class="w-full md:w-auto text-white bg-gray-900 inline-flex items-center justify-center px-6 h-12 rounded-xl gap-2 min-w-max border border-gray-950 hover:bg-gray-800 transition-colors duration-200 cursor-pointer">
+                            <span class="font-semibold">Contact Me</span>
+                            <div class="arrow-up-right"></div>
+                        </button> -->
+                        <a href="mailto:mdnabeelahemad539@gmail.com" target="_blank">
+                            <button
+                                class="w-full md:w-auto text-white bg-gray-900 inline-flex items-center justify-center px-6 h-12 rounded-xl gap-2 min-w-max border border-gray-950 hover:bg-gray-800 transition-colors duration-200 cursor-pointer">
+                                Contact Me
+                                <img src="./images/arrow-icon-dark.png" class="w-3">
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ----- Footer ----- -->
     <div class="mt-20">
         <div class="text-center">
-            <img src="./images/logo.png" alt="" class="w-36 mx-auto mb-2 dark:hidden">
-            <img src="./images/logo_dark.png" alt="" class="w-36 mx-auto mb-2 hidden dark:block">
+            <img src="./images/logo.jpeg" alt=""
+                class="w-36 mx-auto mb-2 dark:hidden rounded-md shadow-md cursor-pointer hover:scale-105 duration-500">
+            <img src="./images/logo-drk.png" alt=""
+                class="w-36 mx-auto mb-2 hidden dark:block rounded-md shadow-md cursor-pointer hover:scale-105 duration-500">
             <div class="w-max flex items-center gap-2 mx-auto">
                 <img src="./images/mail_icon.png" alt="" class="w-6 dark:hidden">
                 <img src="./images/mail_icon_dark.png" alt="" class="w-6 hidden dark:block">
@@ -338,8 +629,10 @@
             <p> &#169; 2024 MD Nabeel Ahemad. All rights reserved.</p>
             <ul class="flex items-center gap-10 justify-center sm:mt-0">
                 <li class=" flex gap-10">
-                    <a href="#">GitHub</a>
-                    <a href="#">LinkedIn</a>
+                    <a href="https://github.com/nabeel539" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.linkedin.com/in/md-nabeel539/" target="_blank"
+                        rel="noopener noreferrer">LinkedIn</a>
+
                 </li>
             </ul>
         </div>

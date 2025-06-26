@@ -67,3 +67,43 @@ function toggleTheme() {
     localStorage.theme = "light";
   }
 }
+
+const words = [
+  "Performance",
+  "Accessible",
+  "Secure",
+  "Interactive",
+  "Scalable",
+  "User Friendly",
+  "Maintainable",
+  "Search Optimized",
+  "Usable",
+  "Reliable",
+  "Responsive",
+];
+
+// Star SVG as a string
+const starSVG = `<img src="images/star.svg" alt="star" class="star-icon">`;
+
+function generateTapeContent() {
+  const tapeContent = document.getElementById("tapeContent");
+  let contentHTML = "";
+
+  // Create enough repetitions to ensure continuous scrolling
+  // We need at least 4 sets to ensure seamless looping
+  for (let i = 0; i < 4; i++) {
+    words.forEach((word) => {
+      contentHTML += `
+                        <div class="tape-item">
+                            <span class="tape-text">${word}</span>
+                            ${starSVG}
+                        </div>
+                    `;
+    });
+  }
+
+  tapeContent.innerHTML = contentHTML;
+}
+
+// Initialize the content when the page loads
+document.addEventListener("DOMContentLoaded", generateTapeContent);
