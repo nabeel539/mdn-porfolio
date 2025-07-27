@@ -2,6 +2,8 @@ const sideMenu = document.querySelector("#sideMenu");
 const navBar = document.querySelector("nav");
 const navLinks = document.querySelector("nav ul");
 
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+
 function openMenu() {
   sideMenu.style.transform = "translateX(-16rem)";
 }
